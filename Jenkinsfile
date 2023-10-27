@@ -1,22 +1,22 @@
-node {
-    stage('Checkout') {
-        git branch: 'main', url: 'https://github.com/Youmnaibrahim/simple-java-app.git'
-    }
+pipline{
+    agent any 
 
-    stage('Build') {
-        try {
-            sh 'echo "Build stage"'
-        } catch (Exception e) {
-            sh 'echo "Exception found"'
-            throw e
+    stages{
+        stage('build'){
+            steps{
+                script{
+                    echo"build in progress"
+                }
+            }
         }
-    }
+        stage('test'){
+            steps{
+                script{
+                    echo "test in progress"
+                }
+            }
+        }
 
-    stage('Test') {
-        if (env.BRANCH_NAME == 'FEAT') {
-            sh 'echo "Test stage"'
-        } else {
-            sh 'echo "Skip test stage"'
-        }
+
     }
 }
